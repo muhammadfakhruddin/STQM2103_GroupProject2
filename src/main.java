@@ -68,6 +68,7 @@ public class main {
             if (op == 0) {
                 System.out.println("Goodbye have a nice day!");
                 System.exit(0);
+
             } else if (op == 1) {
                 System.out.println("The Relation Statement");
                 System.out.print("Relation 1: ");
@@ -75,25 +76,30 @@ public class main {
                 System.out.print("Relation 2: ");
                 findRelation(arr3, arr4, n3, n4); // Display Relation 2
                 op = 0;
+
             } else if (op == 2) {
                 System.out.println("Both relations no complementary because it already a complete relation.");
                 op = 0;
+
             } else if (op == 3) {
                 System.out.print("Inverse R1: ");
                 Inverse(arr1, arr2, n,n1);
                 System.out.print("Inverse R2: ");
                 Inverse(arr3, arr4, n3, n4);
                 op = 0;
+
             } else if (op == 4) {
-                System.out.println("The Union Relation");
-                Union();
+                System.out.print("Union R1 & R2= {");
+                Union(arr1, arr3, arr2, arr4);
                 op = 0;
+
             } else if (op == 5) {
                 System.out.print("Intersection R1 & R2= {");
                 Intersection(arr1, arr3, arr2, arr4);
                 System.out.print("}");
                 System.out.println("\nIf there is no answer, there is no intersection.");
                 op = 0;
+
             }
             else {
                 System.out.println("\"Invalid input please try again.\"");
@@ -110,12 +116,23 @@ public class main {
 
     }
 
-    static void Union() {
-
+    static void Union(int[] arr1, int arr3 [], int arr2[], int arr4[]) { //Need to revise
+        boolean exist = false;
+        for (int i = 0; i <= arr1.length; i++) {
+            for (int j = 0; j < arr3.length; j++) {
+                if (i < arr1.length) {
+                    if (arr1[i] == arr3[j])
+                        exist = true;
+                } else
+                    System.out.print(arr3[j]);
+            }
+            if (!exist && i < arr1.length)
+                System.out.print(arr1[i]);
+        }
     }
 
-    public static void Intersection(int[] arr1, int[] arr3, int[] arr2, int[] arr4) {
 
+    public static void Intersection(int[] arr1, int[] arr3, int[] arr2, int[] arr4) {
         for (int i = 0; i < arr1.length; i++)
             for (int j = 0; j < arr3.length; j++)
                 for (int k = 0; k < arr2.length; k++)
