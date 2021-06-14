@@ -89,8 +89,8 @@ public class main {
                 op = 0;
 
             } else if (op == 4) {
-                System.out.print("Union R1 & R2= {");
-                Union(arr1, arr3, arr2, arr4);
+                System.out.print("Union R1 & R2= ");
+                Union(arr1, arr2, n,n1,arr3, arr4, n3, n4);
                 op = 0;
 
             } else if (op == 5) {
@@ -116,19 +116,15 @@ public class main {
 
     }
 
-    static void Union(int[] arr1, int arr3 [], int arr2[], int arr4[]) { //Need to revise
-        boolean exist = false;
-        for (int i = 0; i <= arr1.length; i++) {
-            for (int j = 0; j < arr3.length; j++) {
-                if (i < arr1.length) {
-                    if (arr1[i] == arr3[j])
-                        exist = true;
-                } else
-                    System.out.print(arr3[j]);
+    static void Union(int[] arr1, int[] arr2, int n1, int n2, int[] arr3, int[] arr4, int n3, int n4) { //Need to revise
+        System.out.print("{");
+        for (int i = 0; i < n1; i++) {
+            for (int j = 0; j < n1; j++) {
+                System.out.print("(" + arr1[i] + ", " + arr2[j] + "),");
+                System.out.print("(" + arr3[i] + ", " + arr4[j] + "),");
             }
-            if (!exist && i < arr1.length)
-                System.out.print(arr1[i]);
         }
+        System.out.println("}");
     }
 
 
