@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.Set;
 
 public class main {
     static Scanner scan = new Scanner(System.in);
@@ -23,39 +22,26 @@ public class main {
         System.out.print("\nEnter the number of elements for 1st Set: ");
         int m = scan.nextInt();
         int arr1[] = new int[m];
+        int arr2[] = new int[m];
         System.out.println("Enter the elements of the array: ");
         for(int i = 0; i < m; i++){
             arr1[i]=scan.nextInt(); //Reading array elements from the user
+            arr2[i]=arr1[i];
         }
 
         // Second Set
         System.out.print("Enter the number of elements for 2nd Set: ");
-        int n = scan.nextInt();
-        int arr2[] = new int[n];
-        System.out.println("Enter the elements of the array: ");
-        for(int i = 0; i < n; i++) {
-            arr2[i] = scan.nextInt(); //Reading array elements from the user
-        }
-
-        // Third Set
-        System.out.print("Enter the number of elements for 3rd Set: ");
         int o = scan.nextInt();
         int arr3[] = new int[o];
+        int arr4[] = new int[o];
         System.out.println("Enter the elements of the array: ");
         for(int i = 0; i < o; i++){
             arr3[i]=scan.nextInt(); //Reading array elements from the user
+            arr4[i]= arr3[i];
         }
 
-        // Fourth Set
-        System.out.print("Enter the number of elements for 4th Set: ");
-        int p = scan.nextInt();
-        int arr4[] = new int[p];
-        System.out.println("Enter the elements of the array: ");
-        for(int i = 0; i < p; i++) {
-            arr4[i] = scan.nextInt(); //Reading array elements from the user
-        }
 
-        int n1 = arr1.length, n2 = arr2.length, n3 = arr3.length, n4 = arr4.length;
+        int n = arr1.length, n1 = arr2.length;
 
         int op = 0;
         do {
@@ -72,32 +58,33 @@ public class main {
             } else if (op == 1) {
                 System.out.println("The Relation Statement");
                 System.out.print("Relation 1: ");
-                findRelation(arr1, arr2, n1, n2); // Display Relation 1
+                findRelation(arr1, arr2, n, n1); // Display Relation 1
                 System.out.print("Relation 2: ");
-                findRelation(arr3, arr4, n3, n4); // Display Relation 2
+                findRelation(arr3, arr4, n, n1); // Display Relation 2
                 op = 0;
 
             } else if (op == 2) {
-                System.out.println("Both relations no complementary because it already a complete relation.");
+                complement(arr1, arr2, n,arr3,arr4);
                 op = 0;
 
             } else if (op == 3) {
                 System.out.print("Inverse R1: ");
                 Inverse(arr1, arr2, n,n1);
+                System.out.println("");
                 System.out.print("Inverse R2: ");
-                Inverse(arr3, arr4, n3, n4);
+                Inverse(arr3, arr4, n, n1);
                 op = 0;
 
             } else if (op == 4) {
                 System.out.print("Union R1 & R2= ");
-                Union(arr1, arr2, n,n1,arr3, arr4, n3, n4);
+                Union(arr1, arr2, n,arr3,arr4);
                 op = 0;
 
             } else if (op == 5) {
                 System.out.print("Intersection R1 & R2= {");
                 Intersection(arr1, arr3, arr2, arr4);
                 System.out.print("}");
-                System.out.println("\nIf there is no answer, there is no intersection.");
+
                 op = 0;
 
             }
@@ -107,16 +94,37 @@ public class main {
         }while(op > 5 || op == 0);
     }
 
+    private static void complement(int[] arr1, int[] arr2, int n, int[] arr3, int[] arr4) {
+        System.out.print("Relation R1: {");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print("(" + arr1[i] + ", " + arr3[j] + "),");
+                System.out.print("(" + arr4[i] + ", " + arr2[j] + "),");
+                System.out.print("(" + arr3[i] + ", " + arr4[j] + "),");
+            }
+        }
+        System.out.println("}");
+        System.out.print("Relation R2: {");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < n; j++) {
+                System.out.print("(" + arr3[i] + ", " + arr1[j] + "),");
+                System.out.print("(" + arr2[i] + ", " + arr4[j] + "),");
+                System.out.print("(" + arr1[i] + ", " + arr2[j] + "),");
+            }
+        }
+        System.out.print("}");
+    }
+
     private static void Inverse(int arr1[], int arr2[], int n, int n1) {
         System.out.print("{");
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < n1; j++)
                 System.out.print("(" + arr2[j] + ", " + arr1[i] + "),");
-        } System.out.println("}");
+        } System.out.print("}");
 
     }
 
-    static void Union(int[] arr1, int[] arr2, int n1, int n2, int[] arr3, int[] arr4, int n3, int n4) { //Need to revise
+    static void Union(int[] arr1, int[] arr2, int n1, int[] arr3, int[] arr4) { //Need to revise
         System.out.print("{");
         for (int i = 0; i < n1; i++) {
             for (int j = 0; j < n1; j++) {
@@ -124,7 +132,7 @@ public class main {
                 System.out.print("(" + arr3[i] + ", " + arr4[j] + "),");
             }
         }
-        System.out.println("}");
+        System.out.print("}");
     }
 
 
