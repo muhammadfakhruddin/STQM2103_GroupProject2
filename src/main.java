@@ -16,10 +16,10 @@ public class main {
 
         //Instruction Message
         System.out.println("INSTRUCTION!");
-        System.out.println("You need to create 4 different sets in order to get 2 relations.");
+        System.out.println("You need to create relations.");
 
         // First Set
-        System.out.print("\nEnter the number of elements for 1st Set: ");
+        System.out.print("\nEnter the number of elements for 1st Relation : ");
         int m = scan.nextInt();
         int arr1[] = new int[m];
         int arr2[] = new int[m];
@@ -30,7 +30,7 @@ public class main {
         }
 
         // Second Set
-        System.out.print("Enter the number of elements for 2nd Set: ");
+        System.out.print("Enter the number of elements for 2nd Relation : ");
         int o = scan.nextInt();
         int arr3[] = new int[o];
         int arr4[] = new int[o];
